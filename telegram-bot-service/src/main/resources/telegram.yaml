@@ -1,0 +1,29 @@
+bot:
+  authorization:
+    username: "@SpacePriceBotTest"
+    token: 5319333008:AAFJhOFPeY2kWQySEZ5Xq7XJcULNddt0zRk
+
+  connection:
+    search-product-service:
+      uri: http://localhost:8080/api/v1
+      path: /product
+      param-name: searchName
+
+  chat-format:
+    button-next: "▶"
+    button-previous: "◀"
+    button-page: "%d из %d"
+    add-favorites: "✅ Добавить в избранное"
+    remove-favorites: "❌ Удалить из избранного"
+    title: "<strong>%s</strong>%n%n"
+    price: "🤑  %.2f ₽%n%n"
+    shop-link: "<a href=\"%s\">Подробнее на %s</a>"
+    old-price: "<strike>%.2f ₽</strike>%n%n"
+    price-up: "🤑  %.2f ₽ 👎%n%n"
+    price-down: "🤑  %.2f ₽ 👍%n%n"
+    greetings: "Тебя приветствует бот 🤖 для поиска товаров в интернет магазинах электроники и бытовой техники."
+    favorites-empty: "🤷‍ Ваш список избранного пуст"
+
+  card-slider:
+    capacity: 5     # must be greater than zero
+    load-limit: 3   # must be greater than zero and less than or equals to capacity

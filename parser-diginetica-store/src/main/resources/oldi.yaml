@@ -1,0 +1,17 @@
+shop:
+  oldi:
+    shop-name: Oldi
+    shop-uri: https://www.oldi.ru
+    image-uri:
+    search-uri: https://sort.diginetica.net/
+    search-path: /search/
+    search-param-name: st
+    sort-param-name: sort
+    offset-param-name: offset
+    queryParams:
+      size: 24
+      apiKey: 4OC8353048
+      showUnavailable: false
+      strategy: vectors_extended,zero_queries_predictor
+      fullData: true
+      useCategoryPrediction: true

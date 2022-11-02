@@ -1,0 +1,17 @@
+shop:
+  citilink:
+    shop-name: Citilink
+    shop-uri: https://www.citilink.ru
+    image-uri: https://items.s1.citilink.ru/
+    search-uri: https://sort.diginetica.net/
+    search-path: /search/
+    search-param-name: st
+    sort-param-name: sort
+    offset-param-name: offset
+    query-params:
+      size: 24
+      apiKey: UCC76J09GL
+      showUnavailable: false
+      strategy: vectors_extended,zero_queries_predictor
+      fullData: true
+      useCategoryPrediction: true
