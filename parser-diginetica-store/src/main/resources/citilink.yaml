@@ -2,6 +2,7 @@ shop:
   citilink:
     shop-name: Citilink
     shop-uri: https://www.citilink.ru
+    image-uri: https://items.s1.citilink.ru/
     search-uri: https://sort.diginetica.net/
     search-path: /search/
     search-param-name: st

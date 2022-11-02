@@ -35,12 +35,32 @@ public class ConverterDigineticaDtoToDto implements ConverterDto {
     @Override
     public ProductDto convertToDto(DigineticaProductDto digineticaProductDto) {
         return new ProductDto(
-                digineticaProductDto.getId(),
-                digineticaProductDto.getName(),
-                digineticaProductDto.getPrice(),
-                this.shopUri + digineticaProductDto.getLink_url(),
-                digineticaProductDto.getImage_url(),
+                convertId(digineticaProductDto),
+                convertName(digineticaProductDto),
+                convertPrice(digineticaProductDto),
+                convertShopUri(digineticaProductDto),
+                convertImageUri(digineticaProductDto),
                 this.shopName
         );
+    }
+
+    protected String convertId(DigineticaProductDto digineticaProductDto) {
+        return digineticaProductDto.getId();
+    }
+
+    protected String convertName(DigineticaProductDto digineticaProductDto) {
+        return digineticaProductDto.getName();
+    }
+
+    protected String convertPrice(DigineticaProductDto digineticaProductDto) {
+        return digineticaProductDto.getPrice();
+    }
+
+    protected String convertShopUri(DigineticaProductDto digineticaProductDto) {
+        return this.shopUri + digineticaProductDto.getLink_url();
+    }
+
+    protected String convertImageUri(DigineticaProductDto digineticaProductDto) {
+        return digineticaProductDto.getImage_url();
     }
 }

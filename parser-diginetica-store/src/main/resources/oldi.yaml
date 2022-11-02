@@ -2,6 +2,7 @@ shop:
   oldi:
     shop-name: Oldi
     shop-uri: https://www.oldi.ru
+    image-uri:
     search-uri: https://sort.diginetica.net/
     search-path: /search/
     search-param-name: st

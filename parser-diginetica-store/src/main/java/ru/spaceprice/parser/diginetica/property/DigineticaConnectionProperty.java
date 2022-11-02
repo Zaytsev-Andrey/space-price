@@ -21,6 +21,8 @@ public abstract class DigineticaConnectionProperty {
 
     protected String shopUri;
 
+    protected String imageUri;
+
     protected String searchUri;
 
     protected String searchPath;
