@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * Parameters for connecting to the Citilink store.
  */
 @Component
-@PropertySource("classpath:citilink-connection.properties")
+@PropertySource(value = "classpath:citilink.yaml", factory = YamlPropertySourceFactory.class)
 @ConfigurationProperties(value="shop.citilink")
 public class CitilinkConnectionProperty extends DigineticaConnectionProperty {
 }

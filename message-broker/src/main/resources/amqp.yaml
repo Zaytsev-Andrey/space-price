@@ -1,0 +1,15 @@
+amqp:
+  exchange:
+    direct-telegram-exchange: telegram.exchange
+  queue:
+    product-queue: product.telegram.queue
+    callback-queue: callback.telegram.queue
+    message-queue: message.telegram.queue
+    command-queue: command.telegram.queue
+    notify-queue: notify.telegram.queue
+  routing-key:
+    product-routing-key: product
+    callback-routing-key: callback
+    message-routing-key: message
+    command-routing-key: command
+    notify-routing-key: notify

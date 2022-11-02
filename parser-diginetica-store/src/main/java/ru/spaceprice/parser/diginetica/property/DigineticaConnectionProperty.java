@@ -15,7 +15,7 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DigineticaConnectionProperty {
+public abstract class DigineticaConnectionProperty {
 
     protected String shopName;
 

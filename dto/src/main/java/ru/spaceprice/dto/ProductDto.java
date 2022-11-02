@@ -1,11 +1,9 @@
 package ru.spaceprice.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class ProductDto extends AbstractProductDto {
 
@@ -21,4 +19,12 @@ public class ProductDto extends AbstractProductDto {
 
     private String shopName;
 
+    public ProductDto(String id, String name, String price, String productLink, String imageLink, String shopName) {
+        super(id);
+        this.name = name;
+        this.price = price;
+        this.productLink = productLink;
+        this.imageLink = imageLink;
+        this.shopName = shopName;
+    }
 }

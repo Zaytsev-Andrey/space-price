@@ -16,18 +16,18 @@ public class DigineticaShopParserConfiguration {
         return new ConverterDigineticaDtoToDto(oldiConnectionProperty);
     }
 
-    @Bean
-    public ConverterDto converterCitilinkDtoToDto(DigineticaConnectionProperty citilinkConnectionProperty) {
-        return new ConverterDigineticaDtoToDto(citilinkConnectionProperty);
-    }
+//    @Bean
+//    public ConverterDto converterCitilinkDtoToDto(DigineticaConnectionProperty citilinkConnectionProperty) {
+//        return new ConverterDigineticaDtoToDto(citilinkConnectionProperty);
+//    }
 
     @Bean
     public DigineticaParser oldiParser(DigineticaConnectionProperty oldiConnectionProperty) {
         return new DigineticaParser(oldiConnectionProperty, converterOldiDtoToDto(oldiConnectionProperty));
     }
 
-    @Bean
-    public DigineticaParser citilinkParser(DigineticaConnectionProperty citilinkConnectionProperty) {
-        return new DigineticaParser(citilinkConnectionProperty, converterCitilinkDtoToDto(citilinkConnectionProperty));
-    }
+//    @Bean
+//    public DigineticaParser citilinkParser(DigineticaConnectionProperty citilinkConnectionProperty) {
+//        return new DigineticaParser(citilinkConnectionProperty, converterCitilinkDtoToDto(citilinkConnectionProperty));
+//    }
 }
