@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.reactivestreams.Subscription;
 import org.springframework.stereotype.Service;
+import ru.spaceprice.telegram.property.BotCardSliderProperty;
 import ru.spaceprice.telegram.storage.repository.ProductSubscriptionRepository;
 
 @Service
@@ -11,7 +12,7 @@ import ru.spaceprice.telegram.storage.repository.ProductSubscriptionRepository;
 @Log4j2
 public class ProductSubscriptionServiceImpl implements ProductSubscriptionService {
 
-    private static final int COUNT_PRODUCT_FOR_LOADING = 5;
+    private final BotCardSliderProperty botCardSliderProperty;
 
     private final ProductSubscriptionRepository productSubscriptionRepository;
 
@@ -23,7 +24,7 @@ public class ProductSubscriptionServiceImpl implements ProductSubscriptionServic
     @Override
     public void loadProducts(String id) {
         productSubscriptionRepository.findById(id)
-                .ifPresent(Subscription -> Subscription.request(COUNT_PRODUCT_FOR_LOADING));
+                .ifPresent(Subscription -> Subscription.request(botCardSliderProperty.getCapacity()));
     }
 
     @Override

@@ -1,10 +1,10 @@
-package ru.spaceprice.telegram.chat.slider;
+package ru.spaceprice.telegram.chat.event;
 
 import lombok.Getter;
 import ru.spaceprice.telegram.storage.entity.ProductCardSlider;
 
 @Getter
-public class CardSliderNavigation {
+public class CardSliderNavigationEvent {
 
     private final String id;
 
@@ -12,21 +12,17 @@ public class CardSliderNavigation {
 
     private final int size;
 
-    private CardSliderNavigation(String id, int position, int size) {
+    private CardSliderNavigationEvent(String id, int position, int size) {
         this.id = id;
         this.position = position;
         this.size = size;
     }
 
-    public static CardSliderNavigation fromProductCardSlider(ProductCardSlider productCardSlider) {
-        return new CardSliderNavigation(
+    public static CardSliderNavigationEvent fromProductCardSlider(ProductCardSlider productCardSlider) {
+        return new CardSliderNavigationEvent(
                 productCardSlider.getId(),
                 productCardSlider.getCurrentPosition(),
                 productCardSlider.getProducts().size()
         );
-    }
-
-    public boolean isNeedLoad() {
-        return size - position - 1 <= 1;
     }
 }

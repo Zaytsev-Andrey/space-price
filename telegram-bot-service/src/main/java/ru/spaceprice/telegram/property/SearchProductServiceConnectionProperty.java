@@ -16,7 +16,6 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 @ConfigurationProperties(value = "bot.connection.search-product-service")
-@PropertySource(value = "classpath:telegram.yaml", factory = BotYamlPropertySourceFactory.class)
 public class SearchProductServiceConnectionProperty {
 
     @NotBlank

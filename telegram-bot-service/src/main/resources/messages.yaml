@@ -1,14 +1,4 @@
 bot:
-  authorization:
-    username: "@SpacePriceBotTest"
-    token: 5319333008:AAFJhOFPeY2kWQySEZ5Xq7XJcULNddt0zRk
-
-  connection:
-    search-product-service:
-      uri: http://localhost:8080/api/v1
-      path: /product
-      param-name: searchName
-
   chat-format:
     button-next: "▶"
     button-previous: "◀"
@@ -23,7 +13,3 @@ bot:
     price-down: "🤑  %.2f ₽ 👍%n%n"
     greetings: "Тебя приветствует бот 🤖 для поиска товаров в интернет магазинах электроники и бытовой техники."
     favorites-empty: "🤷‍ Ваш список избранного пуст"
-
-  card-slider:
-    capacity: 5     # must be greater than zero
-    load-limit: 3   # must be greater than zero and less than or equals to capacity

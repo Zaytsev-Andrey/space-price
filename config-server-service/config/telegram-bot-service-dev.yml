@@ -1,0 +1,13 @@
+spring:
+  redis:
+    host: localhost
+    port: 6379
+  rabbitmq:
+    host: localhost
+    username: '{cipher}49fb3b603277dcf833151c2890b39bbfbd12b548729bff73febf9559f388aeb6'
+    password: '{cipher}49fb3b603277dcf833151c2890b39bbfbd12b548729bff73febf9559f388aeb6'
+
+bot:
+  authorization:
+    username: "@SpacePriceBotTest"
+    token: '{cipher}494bb04f9d6fbdac700a1903e17938f6deed6fa3ddc31a3e46438101433cf5028037f1b660196f7fd18af594cfd9a066ceaf65d1b9c1e49a7980e08d203d60f7'

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: config-server-service
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: @project.basedir@/config
+server:
+  port: 8070

@@ -7,8 +7,8 @@ import lombok.Setter;
 import org.springframework.data.domain.AbstractAggregateRoot;
 import org.springframework.data.redis.core.RedisHash;
 import ru.spaceprice.dto.ProductDto;
-import ru.spaceprice.telegram.chat.slider.CardSliderLive;
-import ru.spaceprice.telegram.chat.slider.CardSliderNavigation;
+import ru.spaceprice.telegram.chat.slider.CardSliderLiveEvent;
+import ru.spaceprice.telegram.chat.event.CardSliderNavigationEvent;
 import ru.spaceprice.telegram.chat.slider.CardSliderNavigator;
 import ru.spaceprice.telegram.chat.slider.Navigable;
 
@@ -48,14 +48,14 @@ public class ProductCardSlider extends AbstractAggregateRoot<ProductCardSlider> 
 
     public void disable() {
         active = false;
-        registerEvent(CardSliderLive.fromProductCardSlider(this));
+        registerEvent(CardSliderLiveEvent.fromProductCardSlider(this));
         registerEvent(this);
     }
 
     private void incrementCurrentPosition() {
         currentPosition++;
         registerEvent(this);
-        registerEvent(CardSliderNavigation.fromProductCardSlider(this));
+        registerEvent(CardSliderNavigationEvent.fromProductCardSlider(this));
     }
 
     private void decrementCurrentPosition() {

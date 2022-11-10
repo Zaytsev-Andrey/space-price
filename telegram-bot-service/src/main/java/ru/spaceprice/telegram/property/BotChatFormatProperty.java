@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 @ConfigurationProperties(value = "bot.chat-format")
-@PropertySource(value = "classpath:telegram.yaml", factory = BotYamlPropertySourceFactory.class)
+@PropertySource(value = "classpath:messages.yaml", factory = BotYamlPropertySourceFactory.class)
 public class BotChatFormatProperty {
 
     @NotBlank

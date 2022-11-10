@@ -7,13 +7,14 @@ import org.reactivestreams.Subscription;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ru.spaceprice.dto.ProductDto;
+import ru.spaceprice.telegram.property.BotCardSliderProperty;
 
 @Service
 @Log4j2
 @RequiredArgsConstructor
 public class TelegramMessageServiceImpl implements TelegramMessageService {
 
-    private static final int COUNT_PRODUCT_FOR_LOADING = 5;
+    private final BotCardSliderProperty botCardSliderProperty;
 
     private final ProductSearchService productSearchService;
 
@@ -34,7 +35,7 @@ public class TelegramMessageServiceImpl implements TelegramMessageService {
                 .subscribe(new Subscriber<>() {
                     @Override
                     public void onSubscribe(Subscription subscription) {
-                        subscription.request(COUNT_PRODUCT_FOR_LOADING);
+                        subscription.request(botCardSliderProperty.getCapacity());
                         productSubscriptionService.registrationSubscription(chatId, subscription);
                     }
 
