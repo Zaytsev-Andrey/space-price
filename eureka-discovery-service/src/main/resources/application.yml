@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: eureca-discovery-service
+  config:
+    import: configserver:http://localhost:8070

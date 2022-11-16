@@ -23,6 +23,8 @@
         <module>parser-diginetica-store</module>
         <module>backend-search-product-service</module>
         <module>message-broker</module>
+        <module>config-server-service</module>
+        <module>eureka-discovery-service</module>
     </modules>
 
     <properties>

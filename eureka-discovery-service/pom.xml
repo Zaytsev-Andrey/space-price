@@ -8,46 +8,26 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>backend-search-product-service</artifactId>
+    <artifactId>eureka-discovery-service</artifactId>
 
     <dependencies>
-        <!--        Spring dependencies-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
 
-        <!--        Test dependencies-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <!--        Util dependencies-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
-        <!--        Module dependencies-->
-        <dependency>
-            <groupId>ru.space-price</groupId>
-            <artifactId>parser</artifactId>
-            <version>${parser.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ru.space-price</groupId>
-            <artifactId>parser-diginetica-store</artifactId>
-            <version>0.0.1</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
