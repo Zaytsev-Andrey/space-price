@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotBlank;
@@ -19,11 +18,25 @@ import javax.validation.constraints.NotBlank;
 public class SearchProductServiceConnectionProperty {
 
     @NotBlank
-    private String uri;
+    private String host;
+
+    @NotBlank
+    private String service;
+
+    @NotBlank
+    private String basePath;
 
     @NotBlank
     private String path;
 
     @NotBlank
     private String paramName;
+
+    public String getUri() {
+        return new StringBuilder()
+                .append(host)
+                .append(service)
+                .append(basePath)
+                .toString();
+    }
 }

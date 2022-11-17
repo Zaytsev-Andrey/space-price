@@ -1,9 +1,13 @@
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8050}
 
 spring:
-  webflux:
-    base-path: /api/v1
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
 
 eureka:
   instance:
@@ -21,3 +25,4 @@ management:
           - health
           - refresh
           - beans
+          - gateway
