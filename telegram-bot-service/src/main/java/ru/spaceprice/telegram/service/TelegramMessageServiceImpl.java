@@ -46,7 +46,7 @@ public class TelegramMessageServiceImpl implements TelegramMessageService {
 
                     @Override
                     public void onError(Throwable throwable) {
-
+                        log.info("Search error {}", throwable.getMessage());
                     }
 
                     @Override

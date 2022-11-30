@@ -1,3 +1,5 @@
+default-client-registration: keycloak
+
 spring:
   redis:
     host: localhost
@@ -6,6 +8,25 @@ spring:
     host: localhost
     username: '{cipher}49fb3b603277dcf833151c2890b39bbfbd12b548729bff73febf9559f388aeb6'
     password: '{cipher}49fb3b603277dcf833151c2890b39bbfbd12b548729bff73febf9559f388aeb6'
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8040/auth/realms/space-price-realm
+          jwk-set-uri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/certs
+      client:
+        registration:
+          keycloak:
+            clientId: telegram-bot-service
+            clientSecret: '{cipher}8ce28383c3abbf407df05eab6f88b1d64248a94b31eae599d11dc4d26d4e0767e019b157c69622acacc88a9796109a05160b178cb2e385ce2b31e034bd45c667'
+            authorizationGrantType: client_credentials
+        provider:
+          keycloak:
+            authorizationUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/auth
+            tokenUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/token
+            userInfoUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/userinfo
+            jwkSetUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/certs
+            introspectionUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/token/introspect
 
 bot:
   authorization:

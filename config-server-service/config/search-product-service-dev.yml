@@ -2,3 +2,24 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8060/eureka/
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8040/auth/realms/space-price-realm
+          jwk-set-uri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/certs
+      client:
+        registration:
+          keycloak:
+            clientId: search-product-service
+            clientSecret: J4MN8VpZCOPHrz46htt1wzkxXEWuXJiL
+            authorizationGrantType: client_credentials
+        provider:
+          keycloak:
+            authorizationUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/auth
+            tokenUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/token
+            userInfoUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/userinfo
+            jwkSetUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/certs
+            introspectionUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/token/introspect
