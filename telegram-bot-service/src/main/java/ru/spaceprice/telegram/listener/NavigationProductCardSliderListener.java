@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import ru.spaceprice.telegram.chat.slider.CardSliderLiveEvent;
+import ru.spaceprice.telegram.chat.event.CardSliderLiveEvent;
 import ru.spaceprice.telegram.chat.event.CardSliderNavigationEvent;
 import ru.spaceprice.telegram.property.BotCardSliderProperty;
 import ru.spaceprice.telegram.service.ProductSubscriptionService;

@@ -1,4 +1,4 @@
-package ru.spaceprice.telegram.chat.slider;
+package ru.spaceprice.telegram.chat.event;
 
 import lombok.Getter;
 import ru.spaceprice.telegram.storage.entity.ProductCardSlider;

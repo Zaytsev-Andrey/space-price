@@ -22,7 +22,7 @@ public class SecurityWebClientConfiguration {
     @Bean
     public WebClient webClient(ReactiveOAuth2AuthorizedClientManager authorizedClientManager) {
         ServerOAuth2AuthorizedClientExchangeFilterFunction oauth2Client =
-                new ServerOAuth2AuthorizedClientExchangeFilterFunction(authorizedClientManager);
+
         oauth2Client.setDefaultClientRegistrationId(defaultClientRegistrationId);
         return WebClient.builder()
                 .baseUrl(searchProductServiceConnectionProperty.getUri())

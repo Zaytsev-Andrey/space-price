@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.springframework.data.domain.AbstractAggregateRoot;
 import org.springframework.data.redis.core.RedisHash;
 import ru.spaceprice.dto.ProductDto;
-import ru.spaceprice.telegram.chat.slider.CardSliderLiveEvent;
+import ru.spaceprice.telegram.chat.event.CardSliderLiveEvent;
 import ru.spaceprice.telegram.chat.event.CardSliderNavigationEvent;
 import ru.spaceprice.telegram.chat.slider.CardSliderNavigator;
 import ru.spaceprice.telegram.chat.slider.Navigable;
