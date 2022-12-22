@@ -26,6 +26,7 @@
         <module>config-server-service</module>
         <module>eureka-discovery-service</module>
         <module>gateway-service</module>
+        <module>database</module>
     </modules>
 
     <properties>
