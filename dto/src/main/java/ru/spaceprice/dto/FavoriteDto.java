@@ -5,9 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public abstract class AbstractProductDto {
+@AllArgsConstructor
+public class FavoriteDto {
 
-    private String id;
+    private String userId;
 }

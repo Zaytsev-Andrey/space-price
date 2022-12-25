@@ -1,0 +1,15 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8060/eureka/
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      authentication-database: admin
+      username: '{cipher}15a57adb467afde9e1ef179590827b9fc91d8ae84493dfe820825b08a9cd02d0'
+      password: '{cipher}0ac0332485086a6b57064ed9d01eb511b0aaffcfa6b99d8a4a2088d43e91e7e1'
+      database: space_price
+      auto-index-creation: true

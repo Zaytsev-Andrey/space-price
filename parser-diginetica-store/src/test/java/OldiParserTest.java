@@ -82,6 +82,7 @@ public class OldiParserTest {
                 "1",
                 "MacBook Pro",
                 "200000",
+                null,
                 "https://www.oldi.ru/catalog/element/1",
                 "https://img.oldi.ru/",
                 "Oldi"

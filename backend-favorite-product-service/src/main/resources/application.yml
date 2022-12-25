@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: favorite-product-service
+  profiles:
+    active: dev
+  config:
+    import: configserver:http://localhost:8070

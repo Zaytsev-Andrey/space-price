@@ -38,6 +38,7 @@ public class ConverterDigineticaDtoToDto implements ConverterDto {
                 convertId(digineticaProductDto),
                 convertName(digineticaProductDto),
                 convertPrice(digineticaProductDto),
+                null,
                 convertShopUri(digineticaProductDto),
                 convertImageUri(digineticaProductDto),
                 this.shopName

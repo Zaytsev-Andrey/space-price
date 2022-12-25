@@ -45,6 +45,8 @@
         <dto.version>0.0.1</dto.version>
         <parser.diginetica.version>0.0.1</parser.diginetica.version>
         <message.broker.version>0.0.1</message.broker.version>
+        <database.version>0.0.1</database.version>
+        <modelmapper.version>3.1.0</modelmapper.version>
     </properties>
 
 </project>

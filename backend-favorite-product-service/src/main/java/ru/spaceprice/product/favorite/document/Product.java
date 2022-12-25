@@ -1,4 +1,4 @@
-package ru.spaceprice.database.document;
+package ru.spaceprice.product.favorite.document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,8 +27,11 @@ public class Product {
     @Field
     private String shopName;
 
+    @Field
+    private String name;
+
     @Field(targetType = FieldType.DECIMAL128)
-    private BigDecimal coast;
+    private BigDecimal price;
 
     @Field
     private String imageLink;

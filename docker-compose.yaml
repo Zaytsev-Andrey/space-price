@@ -13,16 +13,17 @@ services:
 #    depends_on:
 #      - analyzer-backend-api-app
 #
-#  db:
-#    image: mongo
-#    restart: always
-#    environment:
-#      MONGO_INITDB_ROOT_USERNAME: root
-#      MONGO_INITDB_ROOT_PASSWORD: example
-#    ports:
-#      - 27017:27017
-#    volumes:
-#      - mongodb-data:/var/lib/mongodb
+  mongo:
+    image: 'mongo:latest'
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb-data:/etc/mongo
 
   postgres:
     image: 'postgres:latest'
@@ -70,6 +71,7 @@ services:
 
 volumes:
   keycloak-db:
+  mongodb-data:
 
 #  telegram-bot:
 #    image: geekteam/telegram-bot
