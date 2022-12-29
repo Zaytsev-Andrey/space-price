@@ -5,7 +5,7 @@ import org.modelmapper.TypeMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.spaceprice.dto.ProductDto;
-import ru.spaceprice.product.favorite.document.Product;
+import ru.spaceprice.product.favorite.collection.Product;
 
 @Configuration
 public class ModelMapperConfig {

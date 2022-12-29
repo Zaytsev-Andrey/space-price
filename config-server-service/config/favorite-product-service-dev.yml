@@ -13,3 +13,4 @@ spring:
       password: '{cipher}0ac0332485086a6b57064ed9d01eb511b0aaffcfa6b99d8a4a2088d43e91e7e1'
       database: space_price
       auto-index-creation: true
+      ret

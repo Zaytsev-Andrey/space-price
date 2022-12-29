@@ -1,4 +1,4 @@
-package ru.spaceprice.product.favorite.document;
+package ru.spaceprice.product.favorite.collection;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

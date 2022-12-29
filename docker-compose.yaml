@@ -1,18 +1,7 @@
 version: '3'
 
 services:
-#  analyzer-backend-api-app:
-#    image: geekteam/analyzer-backend-api-app:latest
-#    ports:
-#      - 8080:8080
-#
-#  frontend:
-#    image: geekteam/frontend
-#    ports:
-#      - 80:80
-#    depends_on:
-#      - analyzer-backend-api-app
-#
+
   mongo:
     image: 'mongo:latest'
     container_name: mongo
@@ -23,7 +12,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - mongodb-data:/etc/mongo
+      - mongodb-data:/data/db
 
   postgres:
     image: 'postgres:latest'
@@ -72,12 +61,3 @@ services:
 volumes:
   keycloak-db:
   mongodb-data:
-
-#  telegram-bot:
-#    image: geekteam/telegram-bot
-#    ports:
-#      - 8090
-#
-#volumes:
-#  mongodb-data:
-#  rabbitmq-data:

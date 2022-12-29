@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import ru.spaceprice.dto.FavoriteDto;
 import ru.spaceprice.dto.ProductDto;
 import ru.spaceprice.product.favorite.service.FavoriteService;
 
@@ -21,13 +20,19 @@ public class FavoriteController {
     }
 
     @PostMapping
-    public Mono<FavoriteDto> newFavorite(@RequestBody Mono<FavoriteDto> favoriteDto) {
-        return favoriteService.saveFavorite(favoriteDto);
+    public Mono<Boolean> newFavorite(@RequestBody String userId) {
+        return favoriteService.createFavorite(userId);
     }
 
     @PostMapping("/{userId}/add/product")
     public Flux<ProductDto> addProductToFavorite(@PathVariable("userId") String userId,
-                                                 @RequestBody Mono<ProductDto> productDto) {
+                                                 @RequestBody ProductDto productDto) {
         return favoriteService.addProductToUserFavorites(userId, productDto);
+    }
+
+    @DeleteMapping("/{userId}/del/product")
+    public Flux<ProductDto> deleteProductFromFavorite(@PathVariable("userId") String userId,
+                                                      @RequestBody ProductDto productDto) {
+        return favoriteService.deleteProductFromUserFavorite(userId, productDto);
     }
 }

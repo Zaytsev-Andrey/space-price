@@ -1,4 +1,4 @@
-package ru.spaceprice.product.favorite.document;
+package ru.spaceprice.product.favorite.collection;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,14 +26,4 @@ public class Favorite {
     @Field(targetType = FieldType.OBJECT_ID)
     private Set<String> productIds = new HashSet<>();
 
-    public Favorite(String userId) {
-        this.userId = userId;
-    }
-
-    public boolean addProduct(String product) {
-        if (productIds == null) {
-            productIds = new HashSet<>();
-        }
-        return productIds.add(product);
-    }
 }

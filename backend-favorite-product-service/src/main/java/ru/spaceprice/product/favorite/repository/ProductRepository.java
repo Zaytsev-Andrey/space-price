@@ -3,7 +3,7 @@ package ru.spaceprice.product.favorite.repository;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;
-import ru.spaceprice.product.favorite.document.Product;
+import ru.spaceprice.product.favorite.collection.Product;
 
 public interface ProductRepository extends ReactiveMongoRepository<Product, String> {
 
