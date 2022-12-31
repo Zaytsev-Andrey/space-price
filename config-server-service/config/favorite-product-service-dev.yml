@@ -13,4 +13,25 @@ spring:
       password: '{cipher}0ac0332485086a6b57064ed9d01eb511b0aaffcfa6b99d8a4a2088d43e91e7e1'
       database: space_price
       auto-index-creation: true
-      ret
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8040/auth/realms/space-price-realm
+          jwk-set-uri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/certs
+      client:
+        registration:
+          keycloak:
+            clientId: favorite-product-service
+            clientSecret: '{cipher}1b219ef2ba655534f89bbae08fc45e9ce00667ebc5d040b04b9b2df042e4d3e5493bd5a7521394a58896bc2cb69d58da8af815dbd07a318f28f7b39344de65e8'
+            authorizationGrantType: client_credentials
+        provider:
+          keycloak:
+            authorizationUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/auth
+            tokenUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/token
+            userInfoUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/userinfo
+            jwkSetUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/certs
+            introspectionUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/token/introspect

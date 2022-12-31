@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 
 @Configuration
 @Import(DigineticaShopParserConfiguration.class)
-public class ParserConfiguration {
+public class ParserConfig {
 
     private final List<Parser> parsers;
 
     @Autowired
-    public ParserConfiguration(List<Parser> parsers) {
+    public ParserConfig(List<Parser> parsers) {
         this.parsers = parsers;
     }
 

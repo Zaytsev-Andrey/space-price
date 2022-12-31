@@ -14,7 +14,7 @@ spring:
         registration:
           keycloak:
             clientId: search-product-service
-            clientSecret: J4MN8VpZCOPHrz46htt1wzkxXEWuXJiL
+            clientSecret: '{cipher}82352480d5cfbe6f766efae2edebecb3f7943800cead8dff0c04045daa28b131750048c274cf49b09783fd2b63b549328369516cb449f3f91ba665561d40ec1e'
             authorizationGrantType: client_credentials
         provider:
           keycloak:

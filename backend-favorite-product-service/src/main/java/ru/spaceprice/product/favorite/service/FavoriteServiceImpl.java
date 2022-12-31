@@ -45,7 +45,7 @@ public class FavoriteServiceImpl implements FavoriteService {
         ).map(UpdateResult::wasAcknowledged);
     }
 
-    @Transactional
+//    @Transactional
     @Override
     public Flux<ProductDto> addProductToUserFavorites(String userId, ProductDto productDto) {
         return productService.findOrInsertProduct(productDto)
