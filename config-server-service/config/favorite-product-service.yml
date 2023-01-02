@@ -21,3 +21,23 @@ management:
           - health
           - refresh
           - beans
+
+doc:
+  info:
+    title: "Favorite product REST APIs"
+    description: ""
+    version: "1.0"
+    terms-of-service-url: ""
+    license: ""
+    licence-url: ""
+  contact:
+    name: "Zaytsev Andrey"
+    url: "https://github.com/Zaytsev-Andrey/"
+    email: "zaytsev.andrey.al@yandex.ru"
+  api-key:
+    name: "Authorization"
+    keyname: "Authorization"
+    pass-as: "header"
+  authorization-scope:
+    scope: "global"
+    description: "accessEverything"

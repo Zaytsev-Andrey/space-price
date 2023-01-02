@@ -12,9 +12,19 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableReactiveMethodSecurity
 public class SecurityConfig {
 
+    private static final String[] AUTH_WHITELIST = {
+            "/authenticate",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
+            "/v2/api-docs",
+            "/v3/api-docs",
+            "/webjars/**"
+    };
+
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http.authorizeExchange()
+                .pathMatchers(AUTH_WHITELIST).permitAll()
                 .anyExchange().authenticated();
 
         http.csrf().disable()
