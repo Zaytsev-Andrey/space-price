@@ -19,8 +19,8 @@ public class SpacePriceChatKeyboard implements ChatKeyboard {
     public InlineKeyboardMarkup createKeyboard(ProductCardSlider productCardSlider) {
         return InlineKeyboardMarkup.builder()
                 .keyboard(List.of(
-                        spacePriceNavigationButton.createButtons(productCardSlider)
-//                        spacePriceFavoritesButton.createButtons(productCardSlider)
+                        spacePriceNavigationButton.createButtons(productCardSlider),
+                        spacePriceFavoritesButton.createButtons(productCardSlider)
                 ))
                 .build();
 

@@ -46,6 +46,10 @@ public class ProductCardSlider extends AbstractAggregateRoot<ProductCardSlider> 
         registerEvent(this);
     }
 
+    public void refresh() {
+        registerEvent(this);
+    }
+
     public void disable() {
         active = false;
         registerEvent(CardSliderLiveEvent.fromProductCardSlider(this));

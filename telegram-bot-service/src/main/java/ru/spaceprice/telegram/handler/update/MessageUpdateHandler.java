@@ -1,4 +1,4 @@
-package ru.spaceprice.telegram.handler;
+package ru.spaceprice.telegram.handler.update;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

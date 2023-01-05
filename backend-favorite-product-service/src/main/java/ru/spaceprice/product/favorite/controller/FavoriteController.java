@@ -26,25 +26,32 @@ public class FavoriteController {
     }
 
     @ApiOperation(value = "This method is used to create favorite of user")
-    @PreAuthorize("hasAuthority('SCOPE_favorite_product')")
+    @PreAuthorize("hasAuthority('SCOPE_favorite-product')")
     @PostMapping
     public Mono<Boolean> newFavorite(@RequestBody String userId) {
         return favoriteService.createFavorite(userId);
     }
 
     @ApiOperation(value = "This method is used to add product to favorite products of user")
-    @PreAuthorize("hasAuthority('SCOPE_favorite_product')")
-    @PostMapping("/{userId}/add/product")
+    @PreAuthorize("hasAuthority('SCOPE_favorite-product')")
+    @PatchMapping("/{userId}/add/product")
     public Flux<ProductDto> addProductToFavorite(@PathVariable("userId") String userId,
                                                  @RequestBody ProductDto productDto) {
         return favoriteService.addProductToUserFavorites(userId, productDto);
     }
 
     @ApiOperation(value = "This method is used to delete product from favorite products of user")
-    @PreAuthorize("hasAuthority('SCOPE_favorite_product')")
-    @DeleteMapping("/{userId}/del/product")
+    @PreAuthorize("hasAuthority('SCOPE_favorite-product')")
+    @PatchMapping("/{userId}/del/product")
     public Flux<ProductDto> deleteProductFromFavorite(@PathVariable("userId") String userId,
                                                       @RequestBody ProductDto productDto) {
         return favoriteService.deleteProductFromUserFavorite(userId, productDto);
+    }
+
+    @ApiOperation(value = "This method is used to delete favorite of user")
+    @PreAuthorize("hasAuthority('SCOPE_favorite-product')")
+    @DeleteMapping("/{userId}")
+    public Mono<Boolean> deleteFavorite(@PathVariable("userId") String userId) {
+        return favoriteService.deleteFavorite(userId);
     }
 }

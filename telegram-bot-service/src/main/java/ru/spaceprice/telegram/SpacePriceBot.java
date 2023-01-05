@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.spaceprice.telegram.handler.UpdateHandler;
+import ru.spaceprice.telegram.handler.update.UpdateHandler;
 import ru.spaceprice.telegram.property.BotProperty;
 
 import java.util.List;
@@ -33,7 +33,8 @@ public class SpacePriceBot extends TelegramLongPollingBot {
         log.info("Update received: {}", update);
         updateHandlers.stream()
                 .filter(handler -> handler.canHandle(update))
-                .forEach(handler -> handler.handle(update));
+                .findFirst()
+                .ifPresent(handler -> handler.handle(update));
     }
 
 }

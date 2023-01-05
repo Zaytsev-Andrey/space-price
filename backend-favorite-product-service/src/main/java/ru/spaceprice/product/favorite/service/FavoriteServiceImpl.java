@@ -1,5 +1,6 @@
 package ru.spaceprice.product.favorite.service;
 
+import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -14,6 +15,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.spaceprice.product.favorite.collection.Favorite;
 import ru.spaceprice.dto.ProductDto;
+
+import java.util.HashSet;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +43,9 @@ public class FavoriteServiceImpl implements FavoriteService {
     public Mono<Boolean> createFavorite(String userId) {
         return mongoTemplate.upsert(
                 new Query(Criteria.where("userId").is(userId)),
-                new Update().setOnInsert("userId", userId),
+                new Update()
+                        .setOnInsert("userId", userId)
+                        .set("productIds", new HashSet<>()),
                 Favorite.class
         ).map(UpdateResult::wasAcknowledged);
     }
@@ -78,6 +83,13 @@ public class FavoriteServiceImpl implements FavoriteService {
                 .map(Favorite::getProductIds)
                 .flatMap(productService::findByIds)
                 .map(p -> modelMapper.map(p, ProductDto.class));
+    }
+
+    @Override
+    public Mono<Boolean> deleteFavorite(String userId) {
+        return mongoTemplate.remove(
+                new Query(Criteria.where("userId").is(userId))
+        ).map(DeleteResult::wasAcknowledged);
     }
 
 }

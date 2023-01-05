@@ -1,13 +1,18 @@
 package ru.spaceprice.telegram.service;
 
 import ru.spaceprice.dto.ProductDto;
+import ru.spaceprice.telegram.storage.entity.ProductCardSlider;
+
+import java.util.function.Consumer;
 
 public interface ProductCardSliderService {
 
     void create(String chatId);
 
-    void addProduct(String chatId, ProductDto productDto);
+    void update(String chatId, Consumer<ProductCardSlider> consumer);
 
-    void registrationMessage(String chatId, Integer messageId);
+    ProductDto getCurrentProduct(String chatId);
+
+    long getSize(String chatId);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ru.spaceprice.dto.ProductDto;
 import ru.spaceprice.telegram.property.BotCardSliderProperty;
+import ru.spaceprice.telegram.storage.entity.ProductCardSlider;
 
 @Service
 @Log4j2
@@ -21,6 +22,8 @@ public class TelegramMessageServiceImpl implements TelegramMessageService {
     private final ProductCardSliderService productCardSliderService;
 
     private final ProductSubscriptionService productSubscriptionService;
+
+//    private final InformationMessageService informationMessageService;
 
     @Override
     public void messageRequest(Message message) {
@@ -41,7 +44,7 @@ public class TelegramMessageServiceImpl implements TelegramMessageService {
 
                     @Override
                     public void onNext(ProductDto productDto) {
-                        productCardSliderService.addProduct(chatId, productDto);
+                        productCardSliderService.update(chatId, p -> p.addProduct(productDto));
                     }
 
                     @Override
@@ -52,9 +55,9 @@ public class TelegramMessageServiceImpl implements TelegramMessageService {
                     @Override
                     public void onComplete() {
                         productSubscriptionService.closeSubscription(chatId);
+                        productCardSliderService.update(chatId, ProductCardSlider::refresh);
                     }
                 });
-//                .subscribe(productDto -> addProductToCardSlider(productCardSlider, productDto));
     }
 
 }

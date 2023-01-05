@@ -57,4 +57,7 @@ public class BotChatFormatProperty {
 
     @NotBlank
     private String favoritesEmpty;
+
+    @NotBlank
+    private String searchEmpty;
 }

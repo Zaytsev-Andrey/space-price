@@ -14,11 +14,11 @@ public class ProductSearchServiceImpl implements ProductSearchService {
 
     private final SearchProductServiceConnectionProperty searchProductServiceConnectionProperty;
 
-    private final WebClient webClient;
+    private final WebClient searchWebClient;
 
     @Override
     public Flux<ProductDto> findProducts(String searchName) {
-        return webClient
+        return searchWebClient
                 .get()
                 .uri(uriBuilder -> uriBuilder
                         .path(searchProductServiceConnectionProperty.getPath())

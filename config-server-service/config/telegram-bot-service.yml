@@ -19,6 +19,11 @@ bot:
       base-path: /api/v1
       path: /product
       param-name: searchName
+    favorite-product-service:
+      host: http://localhost:8050/        # must end to /
+      service: favorite-product-service
+      base-path: /api/v1
+      path: /favorite
 
   card-slider:
     capacity: 5     # must be greater than zero

@@ -1,4 +1,4 @@
-package ru.spaceprice.telegram.handler;
+package ru.spaceprice.telegram.handler.update;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

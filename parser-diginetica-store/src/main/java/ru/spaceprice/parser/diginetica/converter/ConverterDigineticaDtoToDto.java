@@ -36,12 +36,12 @@ public class ConverterDigineticaDtoToDto implements ConverterDto {
     public ProductDto convertToDto(DigineticaProductDto digineticaProductDto) {
         return new ProductDto(
                 convertId(digineticaProductDto),
+                this.shopName,
                 convertName(digineticaProductDto),
                 convertPrice(digineticaProductDto),
                 null,
                 convertShopUri(digineticaProductDto),
-                convertImageUri(digineticaProductDto),
-                this.shopName
+                convertImageUri(digineticaProductDto)
         );
     }
 

@@ -13,4 +13,6 @@ public interface FavoriteService {
     Flux<ProductDto> addProductToUserFavorites(String userId, ProductDto productDto);
 
     Flux<ProductDto> deleteProductFromUserFavorite(String userId, ProductDto productDto);
+
+    Mono<Boolean> deleteFavorite(String userId);
 }

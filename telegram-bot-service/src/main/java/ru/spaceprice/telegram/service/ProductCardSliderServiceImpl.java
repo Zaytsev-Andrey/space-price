@@ -1,13 +1,13 @@
 package ru.spaceprice.telegram.service;
 
 import lombok.RequiredArgsConstructor;
-import org.reactivestreams.Subscription;
 import org.springframework.stereotype.Service;
 import ru.spaceprice.dto.ProductDto;
 import ru.spaceprice.telegram.storage.entity.ProductCardSlider;
 import ru.spaceprice.telegram.storage.repository.ProductCardSliderRepository;
 
 import java.util.Optional;
+import java.util.function.Consumer;
 
 @Service
 @RequiredArgsConstructor
@@ -17,41 +17,43 @@ public class ProductCardSliderServiceImpl implements ProductCardSliderService {
 
     @Override
     public void create(String chatId) {
-        // disable previous card slider
-        disableProductCardSlider(chatId);
+        // disable previous card slider if present
+        Integer messageId = productCardSliderRepository
+                .findById(chatId)
+                .orElse(new ProductCardSlider())
+                .getMessageId();
+        if (messageId != null) {
+            update(chatId, ProductCardSlider::disable);
+        }
         // create and save new card slider
         productCardSliderRepository.save(ProductCardSlider.newProductCardSlider(chatId));
     }
 
-    private void disableProductCardSlider(String chatId) {
+    @Override
+    public void update(String chatId, Consumer<ProductCardSlider> consumer) {
         Optional<ProductCardSlider> productCardSliderOpt = productCardSliderRepository.findById(chatId);
         if (productCardSliderOpt.isPresent()) {
             ProductCardSlider productCardSlider = productCardSliderOpt.get();
-            productCardSlider.disable();
+            consumer.accept(productCardSlider);
             productCardSliderRepository.save(productCardSlider);
         }
     }
 
     @Override
-    public void addProduct(String chatId, ProductDto productDto) {
-        Optional<ProductCardSlider> productCardSliderOpt = productCardSliderRepository.findById(chatId);
-        if (productCardSliderOpt.isPresent()) {
-            ProductCardSlider productCardSlider = productCardSliderOpt.get();
-            productCardSlider.addProduct(productDto);
-            productCardSliderRepository.save(productCardSlider);
-        }
+    public ProductDto getCurrentProduct(String chatId) {
+        return productCardSliderRepository.findById(chatId)
+                .orElseThrow(IllegalArgumentException::new)
+                .navigator()
+                .getCurrentProduct();
     }
 
     @Override
-    public void registrationMessage(String chatId, Integer messageId) {
-        Optional<ProductCardSlider> productCardSliderOpt = productCardSliderRepository.findById(chatId);
-        if (productCardSliderOpt.isPresent()) {
-            ProductCardSlider productCardSlider = productCardSliderOpt.get();
-            if (productCardSlider.getMessageId() == null) {
-                productCardSlider.setMessageId(messageId);
-                productCardSliderRepository.save(productCardSlider);
-            }
-        }
+    public long getSize(String chatId) {
+        return productCardSliderRepository
+                .findById(chatId)
+                .orElse(new ProductCardSlider())
+                .getProducts()
+                .size();
     }
 
 }
