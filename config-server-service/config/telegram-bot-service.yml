@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8090}
+  port: ${TELEGRAM_BOT_PORT:8090}
 
 management:
   endpoints:
@@ -14,13 +14,13 @@ management:
 bot:
   connection:
     search-product-service:
-      host: http://localhost:8050/        # must end to /
+      host: http://${GATEWAY_SERVICE_HOST:localhost}:${GATEWAY_SERVICE_PORT:8050}/        # must end to /
       service: search-product-service
       base-path: /api/v1
       path: /product
       param-name: searchName
     favorite-product-service:
-      host: http://localhost:8050/        # must end to /
+      host: http://${GATEWAY_SERVICE_HOST:localhost}:${GATEWAY_SERVICE_PORT:8050}/        # must end to /
       service: favorite-product-service
       base-path: /api/v1
       path: /favorite

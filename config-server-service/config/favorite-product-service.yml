@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8100}
+  port: ${FAVORITE_PRODUCT_SERVICE_PORT:8100}
 
 spring:
   webflux:

@@ -2,6 +2,115 @@ version: '3'
 
 services:
 
+  config-server-service:
+    image: registry.heroku.com/space-price-config-server-service/web:latest
+    container_name: config-server-service
+    environment:
+      CONFIG_SERVER_PORT: 8070
+    ports:
+      - 8070:8070
+    volumes:
+      - ./config-server-service/config:/apps/config
+
+  eureka-discovery-service:
+    image: registry.heroku.com/space-price-eureka-discovery-service/web:latest
+    container_name: eureka-discovery-service
+    environment:
+      EUREKA_SERVER_HOST: eureka-discovery-service
+      EUREKA_SERVER_PORT: 8060
+      CONFIG_SERVER_HOST: config-server-service
+      CONFIG_SERVER_PORT: 8070
+    ports:
+      - 8060:8060
+    depends_on:
+      - config-server-service
+    command: bash -c "/apps/wait-for.sh config-server-service 8070 && /apps/entrypoint.sh"
+
+  gateway-service:
+    image: registry.heroku.com/space-price-gateway-service/web:latest
+    container_name: gateway-service
+    environment:
+      GATEWAY_SERVER_PORT: 8050
+      EUREKA_SERVER_HOST: eureka-discovery-service
+      EUREKA_SERVER_PORT: 8060
+      CONFIG_SERVER_HOST: config-server-service
+      CONFIG_SERVER_PORT: 8070
+    ports:
+      - 8050:8050
+    depends_on:
+      - eureka-discovery-service
+    command: bash -c "/apps/wait-for.sh eureka-discovery-service 8060 && /apps/entrypoint.sh"
+
+  search-product-service:
+    image: registry.heroku.com/space-price-backend-search-product-service/web:latest
+    container_name: search-product-service
+    environment:
+      SEARCH_PRODUCT_SERVICE_PORT: 8110
+      EUREKA_SERVER_HOST: eureka-discovery-service
+      EUREKA_SERVER_PORT: 8060
+      CONFIG_SERVER_HOST: config-server-service
+      CONFIG_SERVER_PORT: 8070
+      AUTH_SERVER_HOST: keycloak
+      AUTH_SERVER_PORT: 8080
+      CLIENT_SECRET: J4MN8VpZCOPHrz46htt1wzkxXEWuXJiL
+      PROFILES: dev
+    ports:
+      - 8110:8110
+    depends_on:
+      - gateway-service
+    command: bash -c "/apps/wait-for.sh gateway-service 8050 && /apps/wait-for.sh rabbitmq 5672 && /apps/wait-for.sh keycloak 8080 && /apps/entrypoint.sh"
+
+  favorite-product-service:
+    image: registry.heroku.com/space-price-backend-favorite-product-service/web:latest
+    container_name: favorite-product-service
+    environment:
+      SEARCH_PRODUCT_SERVICE_PORT: 8100
+      EUREKA_SERVER_HOST: eureka-discovery-service
+      EUREKA_SERVER_PORT: 8060
+      CONFIG_SERVER_HOST: config-server-service
+      CONFIG_SERVER_PORT: 8070
+      MONGODB_HOST: mongo
+      MONGODB_PORT: 27017
+      MONGODB_USERNAME: root
+      MONGODB_PASSWORD: example
+      AUTH_SERVER_HOST: keycloak
+      AUTH_SERVER_PORT: 8080
+      CLIENT_SECRET:
+      PROFILES: dev
+    ports:
+      - 8100:8100
+    depends_on:
+      - gateway-service
+    command: bash -c "/apps/wait-for.sh gateway-service 8050 && /apps/wait-for.sh mongo 27017 && /apps/wait-for.sh keycloak 8080 && /apps/entrypoint.sh"
+
+  telegram-bot-service:
+    image: registry.heroku.com/space-price-telegram-bot-service/web:latest
+    container_name: telegram-bot-service
+    environment:
+      TELEGRAM_BOT_PORT: 8090
+      EUREKA_SERVER_HOST: eureka-discovery-service
+      EUREKA_SERVER_PORT: 8060
+      CONFIG_SERVER_HOST: config-server-service
+      CONFIG_SERVER_PORT: 8070
+      GATEWAY_SERVICE_HOST: gateway-service
+      GATEWAY_SERVICE_PORT: 8050
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USERNAME: guest
+      RABBITMQ_PASSWORD: guest
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      TELEGRAM_BOT_USERNAME: '@SpacePriceTestBot'
+      TELEGRAM_BOT_TOKEN: 5319333008:AAFJhOFPeY2kWQySEZ5Xq7XJcULNddt0zRk
+      AUTH_SERVER_HOST: keycloak
+      AUTH_SERVER_PORT: 8080
+      CLIENT_SECRET: XYRon4qB021gVsv2W1Xx3Ovz1liskujb
+      PROFILES: dev
+    ports:
+      - 8090:8090
+    depends_on:
+      - gateway-service
+    command: bash -c "/apps/wait-for.sh search-product-service 8110 && /apps/wait-for.sh favorite-product-service 8100 && /apps/wait-for.sh redis 6379 && /apps/entrypoint.sh"
+
   mongo:
     image: 'mongo:latest'
     container_name: mongo
@@ -10,7 +119,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     ports:
-      - 27017:27017
+      - 27017:2701
     volumes:
       - mongodb-data:/data/db
 
@@ -36,23 +145,26 @@ services:
       DB_PASSWORD: password
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: password
+      KEYCLOAK_LOGLEVEL: ALL
     ports:
-      - 8040:8080
+      - 8080:8080
     depends_on:
       - postgres
 
   rabbitmq:
     image: 'rabbitmq:3-management'
+    container_name: rabbitmq
     ports:
       - 5672:5672
       - 15672:15672
-#      - 61613:61613
-#    command: sh -c "rabbitmq-plugins enable --offline rabbitmq_stomp && rabbitmq-server"
-#    volumes:
-#      - rabbitmq-data:/var/lib/rabbitmq
+      - 61613:61613
+    command: sh -c "rabbitmq-plugins enable --offline rabbitmq_stomp && rabbitmq-server"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
 
   redis:
     image: 'bitnami/redis:latest'
+    container_name: redis
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
@@ -61,3 +173,4 @@ services:
 volumes:
   keycloak-db:
   mongodb-data:
+  rabbitmq-data:
