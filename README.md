@@ -22,7 +22,6 @@
 ```
 mvn clean install
 ```
-
 <h3>Запуск проекта</h3>
 ```
 docker-compose up -d
