@@ -18,7 +18,7 @@
 </details>
 <details><summary><h2>Сборка и запуск проекта</h2></summary>
 
-<h3>Сборка проекта:</h3></a>
+<h3>Сборка проекта:</h3>
 ```
 mvn clean install
 ```
