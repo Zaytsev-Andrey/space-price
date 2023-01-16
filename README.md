@@ -19,8 +19,7 @@
 <details><summary><h2>Сборка и запуск проекта</h2></summary>
 
 <h3>Сборка проекта:</h3>
-```
-mvn clean install
+```mvn clean install
 ```
 <h3>Файл docker-compose</h3>
 ```
