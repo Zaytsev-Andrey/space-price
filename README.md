@@ -15,11 +15,17 @@
   <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Geek-Team-Development/market-analyzer">
 </details>
 <details><summary><h2>Сборка и запуск проекта</h2></summary>
-Сборка проекта:
+<ul>
+  <li><a href="#mvn-build">Сборка проекта</a></li>
+  <li><a href="#docker-compose">Создание docker-compose файла</a></li>
+  <li><a href="#run-app">Запуск проекта</a></li>
+</ul>
+
+<a name="mvn-build"><h3>Сборка проекта:</h3></a>
 ```
 mvn clean install
 ```
-Файл docker-compose:
+<a name="docker-compose"><h3>Создание docker-compose файла:</h3></a>
 ```
 version: '3'
 
@@ -197,7 +203,7 @@ volumes:
   mongodb-data:
   rabbitmq-data:
 ```
-Запуск проекта:
+<a name="run-app"><h3>Запуск проекта:</h3></a>
 ```
 docker-compose up -d
 ```
