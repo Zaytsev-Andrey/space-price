@@ -1,25 +1,29 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8060/eureka/
+      defaultZone: http://${EUREKA_SERVER_HOST:localhost}:${EUREKA_SERVER_PORT:8761}/eureka/
+
+logging:
+  level:
+    root: TRACE
 
 spring:
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8040/auth/realms/space-price-realm
-          jwk-set-uri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/certs
+          issuer-uri: http://${AUTH_SERVER_HOST:localhost}:${AUTH_SERVER_PORT:8080}/auth/realms/space-price-realm
+          jwk-set-uri: http://${AUTH_SERVER_HOST:localhost}:${AUTH_SERVER_PORT:8080}/auth/realms/space-price-realm/protocol/openid-connect/certs
       client:
         registration:
           keycloak:
             clientId: search-product-service
-            clientSecret: '{cipher}82352480d5cfbe6f766efae2edebecb3f7943800cead8dff0c04045daa28b131750048c274cf49b09783fd2b63b549328369516cb449f3f91ba665561d40ec1e'
+            clientSecret: ${CLIENT_SECRET}
             authorizationGrantType: client_credentials
         provider:
           keycloak:
-            authorizationUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/auth
-            tokenUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/token
-            userInfoUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/userinfo
-            jwkSetUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/certs
-            introspectionUri: http://localhost:8040/auth/realms/space-price-realm/protocol/openid-connect/token/introspect
+            authorizationUri: http://${AUTH_SERVER_HOST:localhost}:${AUTH_SERVER_PORT:8080}/auth/realms/space-price-realm/protocol/openid-connect/auth
+            tokenUri: http://${AUTH_SERVER_HOST:localhost}:${AUTH_SERVER_PORT:8080}/auth/realms/space-price-realm/protocol/openid-connect/token
+            userInfoUri: http://${AUTH_SERVER_HOST:localhost}:${AUTH_SERVER_PORT:8080}/auth/realms/space-price-realm/protocol/openid-connect/userinfo
+            jwkSetUri: http://${AUTH_SERVER_HOST:localhost}:${AUTH_SERVER_PORT:8080}/auth/realms/space-price-realm/protocol/openid-connect/certs
+            introspectionUri: http://${AUTH_SERVER_HOST:localhost}:${AUTH_SERVER_PORT:8080}/auth/realms/space-price-realm/protocol/openid-connect/token/introspect

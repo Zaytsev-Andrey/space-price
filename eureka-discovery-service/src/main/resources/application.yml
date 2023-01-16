@@ -1,7 +1,7 @@
 spring:
   application:
-    name: eureca-discovery-service
+    name: eureka-discovery-service
   profiles:
     active: dev
   config:
-    import: configserver:http://localhost:8070
+    import: configserver:http://${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:8888}

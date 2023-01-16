@@ -1,5 +1,5 @@
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${EUREKA_SERVER_HOST:localhost}
   server:
     waitTimeInMsWhenSyncEmpty: 5

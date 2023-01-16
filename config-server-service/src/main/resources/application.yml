@@ -7,6 +7,6 @@ spring:
     config:
       server:
         native:
-          search-locations: @project.basedir@/config
+          search-locations: /apps/config
 server:
-  port: 8070
+  port: ${CONFIG_SERVER_PORT:8888}

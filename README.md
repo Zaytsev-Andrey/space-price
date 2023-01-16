@@ -1,3 +1,32 @@
+# Space Price
+<details open=""><summary><h2>Описание</h2></summary>
+  <div>
+    <b>Space Price</b> - агрегатор поиска в интернет-магазинах, с возможностью добавления товаров в избранное для отслеживания изменения цен. 
+    В качестве пользовательского интерфейса реализован Telegram Bot.
+  </div>
+  <p></p>
+  <div>
+    В настоящий момент реализован поиск в интернет магазинах <a href="https://www.oldi.ru/">Oldi.ru</a> и <a href="https://citilink.ru/">Citilink.ru</a>
+  </div>
+  <p></p>
+  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Geek-Team-Development/market-analyzer/total?color=brightgreen">
+  <img alt="coverage" src="https://img.shields.io/badge/coverage-60%25-yellow">
+  <img alt="build" src="https://img.shields.io/badge/build-passing-brightgreen">
+  <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Geek-Team-Development/market-analyzer">
+</details>
+<details><summary><h2>Сборка и запуск проекта</h2></summary>
+<ul>
+  <li><a href="#mvn-build">Сборка проекта</a></li>
+  <li><a href="#docker-compose">Создание docker-compose файла</a></li>
+  <li><a href="#run-app">Запуск проекта</a></li>
+</ul>
+
+<a name="mvn-build"><h3>Сборка проекта:</h3></a>
+```
+mvn clean install
+```
+<a name="docker-compose"><h3>Создание docker-compose файла:</h3></a>
+```
 version: '3'
 
 services:
@@ -52,7 +81,7 @@ services:
       CONFIG_SERVER_PORT: 8070
       AUTH_SERVER_HOST: keycloak
       AUTH_SERVER_PORT: 8080
-      CLIENT_SECRET: J4MN8VpZCOPHrz46htt1wzkxXEWuXJiL
+      CLIENT_SECRET: <secret>
       PROFILES: dev
     ports:
       - 8110:8110
@@ -72,10 +101,10 @@ services:
       MONGODB_HOST: mongo
       MONGODB_PORT: 27017
       MONGODB_USERNAME: root
-      MONGODB_PASSWORD: example
+      MONGODB_PASSWORD: <mongo_password>
       AUTH_SERVER_HOST: keycloak
       AUTH_SERVER_PORT: 8080
-      CLIENT_SECRET:
+      CLIENT_SECRET: <secret>
       PROFILES: dev
     ports:
       - 8100:8100
@@ -96,14 +125,14 @@ services:
       GATEWAY_SERVICE_PORT: 8050
       RABBITMQ_HOST: rabbitmq
       RABBITMQ_USERNAME: guest
-      RABBITMQ_PASSWORD: guest
+      RABBITMQ_PASSWORD: <rabbit_password>
       REDIS_HOST: redis
       REDIS_PORT: 6379
-      TELEGRAM_BOT_USERNAME: '@SpacePriceTestBot'
-      TELEGRAM_BOT_TOKEN: 5319333008:AAFJhOFPeY2kWQySEZ5Xq7XJcULNddt0zRk
+      TELEGRAM_BOT_USERNAME: <bot_name>
+      TELEGRAM_BOT_TOKEN: <bot_token>
       AUTH_SERVER_HOST: keycloak
       AUTH_SERVER_PORT: 8080
-      CLIENT_SECRET: XYRon4qB021gVsv2W1Xx3Ovz1liskujb
+      CLIENT_SECRET: <secret>
       PROFILES: dev
     ports:
       - 8090:8090
@@ -117,7 +146,7 @@ services:
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_PASSWORD: <mongo_password>
     ports:
       - 27017:2701
     volumes:
@@ -129,7 +158,7 @@ services:
     environment:
       POSTGRES_DB: keycloak
       POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: <postgres_password>
     volumes:
       - keycloak-db:/var/lib/postgresql/data
 
@@ -142,10 +171,9 @@ services:
       DB_ADDR: postgres
       DB_DATABASE: keycloak
       DB_USER: keycloak
-      DB_PASSWORD: password
+      DB_PASSWORD: <postgres_password>
       KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: password
-      KEYCLOAK_LOGLEVEL: ALL
+      KEYCLOAK_PASSWORD: <keycloak_password>
     ports:
       - 8080:8080
     depends_on:
@@ -174,3 +202,10 @@ volumes:
   keycloak-db:
   mongodb-data:
   rabbitmq-data:
+```
+<a name="run-app"><h3>Запуск проекта:</h3></a>
+```
+docker-compose up -d
+```
+</details>
+
